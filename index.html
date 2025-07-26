@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Grocery Store - FreshMart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="#">FreshMart</a></h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#filters">Categories</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount" class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <section id="filters" class="filters">
+            <h2>Categories</h2>
+            <div class="category-buttons" id="categoryButtons">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="fruits">Fruits</button>
+                <button class="filter-btn" data-category="vegetables">Vegetables</button>
+                <button class="filter-btn" data-category="dairy">Dairy & Eggs</button>
+                <button class="filter-btn" data-category="bakery">Bakery</button>
+                <button class="filter-btn" data-category="snacks">Snacks</button>
+                <button class="filter-btn" data-category="beverages">Beverages</button>
+                <button class="filter-btn" data-category="personal_care">Personal Care</button>
+            </div>
+        </section>
+
+        <section id="products" class="product-listing">
+            <h2>Our Products</h2>
+            <div class="product-grid" id="productGrid">
+                </div>
+        </section>
+
+        <section id="about-us" class="info-section">
+            <h2>About FreshMart</h2>
+            <p>Welcome to FreshMart, your ultimate destination for fresh and high-quality groceries online. We are dedicated to bringing the freshest produce, dairy, bakery items, and pantry essentials right to your doorstep, making your grocery shopping experience convenient, reliable, and enjoyable.</p>
+            <p>Our commitment is to source the best products, support local suppliers, and provide exceptional customer service. At FreshMart, we believe in healthy eating and sustainable practices, ensuring that you receive nothing but the best for your family.</p>
+            <p>Thank you for choosing FreshMart. We look forward to serving you!</p>
+        </section>
+
+        <section id="contact" class="info-section">
+            <h2>Contact Us</h2>
+            <p>We're here to help! Whether you have a question about our products, an inquiry about an order, or just want to provide feedback, please don't hesitate to reach out to us.</p>
+            <p>
+                <strong>Email:</strong> <a href="mailto:support@freshmart.com">support@freshmart.com</a><br>
+                <strong>Phone:</strong> +91 98765 43210 (Mon-Fri, 9 AM - 6 PM IST)<br>
+                <strong>Address:</strong> FreshMart Headquarters, Plot No. 123, Green Lane, New Delhi, India
+            </p>
+            <p>You can also follow us on our social media channels for the latest updates and offers!</p>
+        </section>
+    </main>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart-btn" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart-message">Your cart is empty.</p>
+        </div>
+        <div class="cart-summary">
+            <p>Total: <span id="cartTotal">₹0.00</span></p>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="payment-modal-overlay" id="paymentModalOverlay">
+        <div class="payment-modal">
+            <div class="payment-modal-header">
+                <h2>Choose Payment Method</h2>
+                <button class="close-modal-btn" id="closePaymentModalBtn">&times;</button>
+            </div>
+            <div class="payment-options">
+                <div class="payment-option">
+                    <input type="radio" id="card" name="paymentMethod" value="card">
+                    <label for="card"><i class="fas fa-credit-card"></i> Credit/Debit Card</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="upi" name="paymentMethod" value="upi">
+                    <label for="upi"><i class="fas fa-qrcode"></i> UPI (Google Pay, PhonePe, etc.)</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="netbanking" name="paymentMethod" value="netbanking">
+                    <label for="netbanking"><i class="fas fa-university"></i> Net Banking</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="cod" name="paymentMethod" value="cod">
+                    <label for="cod"><i class="fas fa-money-bill-wave"></i> Cash on Delivery</label>
+                </div>
+            </div>
+            <div class="payment-modal-footer">
+                <p>Order Total: <span id="paymentModalTotal">₹0.00</span></p>
+                <button class="confirm-payment-btn" id="confirmPaymentBtn">Confirm Payment</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FreshMart. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav.main-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // Only prevent default and scroll if it's an internal link
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
